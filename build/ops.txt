@@ -1,0 +1,418 @@
+def Comparable.__lt__(self, other):
+    self :: main10.Comparable
+    other, r0, r1 :: object
+L0:
+    r0 = load_address _Py_EllipsisObject
+    r1 = box(None, 1)
+    inc_ref r1
+    return r1
+
+def bubble(sequence):
+    sequence :: object
+    r0, N, r1, r2, i :: int
+    r3 :: native_int
+    r4 :: bit
+    r5 :: native_int
+    r6, r7, r8 :: bit
+    r9 :: bool
+    r10 :: bit
+    r11, r12, r13, j :: int
+    r14 :: native_int
+    r15 :: bit
+    r16 :: native_int
+    r17, r18, r19 :: bit
+    r20 :: bool
+    r21 :: bit
+    r22, r23 :: object
+    r24 :: main10.Comparable
+    r25 :: int
+    r26, r27 :: object
+    r28 :: main10.Comparable
+    r29 :: object
+    r30 :: bool
+    r31 :: int
+    r32, r33 :: object
+    r34, r35 :: main10.Comparable
+    r36, r37 :: object
+    r38, r39 :: main10.Comparable
+    r40 :: object
+    r41 :: i32
+    r42 :: bit
+    r43 :: int
+    r44 :: object
+    r45 :: i32
+    r46 :: bit
+    r47, r48 :: int
+    r49 :: object
+L0:
+    r0 = CPyObject_Size(sequence)
+    if is_error(r0) goto L27 (error at bubble:11) else goto L1
+L1:
+    N = r0
+    r1 = CPyTagged_Subtract(N, 2)
+    r2 = 0
+    inc_ref r2 :: int
+    i = r2
+L2:
+    r3 = r2 & 1
+    r4 = r3 == 0
+    r5 = r1 & 1
+    r6 = r5 == 0
+    r7 = r4 & r6
+    if r7 goto L3 else goto L4 :: bool
+L3:
+    r8 = r2 < r1 :: signed
+    r9 = r8
+    goto L5
+L4:
+    r10 = CPyTagged_IsLt_(r2, r1)
+    r9 = r10
+L5:
+    if r9 goto L6 else goto L28 :: bool
+L6:
+    r11 = CPyTagged_Subtract(N, i)
+    dec_ref i :: int
+    r12 = CPyTagged_Subtract(r11, 2)
+    dec_ref r11 :: int
+    r13 = 0
+    inc_ref r13 :: int
+    j = r13
+L7:
+    r14 = r13 & 1
+    r15 = r14 == 0
+    r16 = r12 & 1
+    r17 = r16 == 0
+    r18 = r15 & r17
+    if r18 goto L8 else goto L9 :: bool
+L8:
+    r19 = r13 < r12 :: signed
+    r20 = r19
+    goto L10
+L9:
+    r21 = CPyTagged_IsLt_(r13, r12)
+    r20 = r21
+L10:
+    if r20 goto L11 else goto L29 :: bool
+L11:
+    inc_ref j :: int
+    r22 = box(int, j)
+    r23 = PyObject_GetItem(sequence, r22)
+    dec_ref r22
+    if is_error(r23) goto L30 (error at bubble:14) else goto L12
+L12:
+    r24 = cast(main10.Comparable, r23)
+    if is_error(r24) goto L30 (error at bubble:14) else goto L13
+L13:
+    r25 = CPyTagged_Add(j, 2)
+    r26 = box(int, r25)
+    r27 = PyObject_GetItem(sequence, r26)
+    dec_ref r26
+    if is_error(r27) goto L31 (error at bubble:14) else goto L14
+L14:
+    r28 = cast(main10.Comparable, r27)
+    if is_error(r28) goto L31 (error at bubble:14) else goto L15
+L15:
+    r29 = PyObject_RichCompare(r24, r28, 4)
+    dec_ref r24
+    dec_ref r28
+    if is_error(r29) goto L30 (error at bubble:14) else goto L16
+L16:
+    r30 = unbox(bool, r29)
+    dec_ref r29
+    if is_error(r30) goto L30 (error at bubble:14) else goto L17
+L17:
+    if r30 goto L18 else goto L32 :: bool
+L18:
+    r31 = CPyTagged_Add(j, 2)
+    r32 = box(int, r31)
+    r33 = PyObject_GetItem(sequence, r32)
+    dec_ref r32
+    if is_error(r33) goto L30 (error at bubble:15) else goto L19
+L19:
+    r34 = cast(main10.Comparable, r33)
+    if is_error(r34) goto L30 (error at bubble:15) else goto L20
+L20:
+    r35 = r34
+    inc_ref j :: int
+    r36 = box(int, j)
+    r37 = PyObject_GetItem(sequence, r36)
+    dec_ref r36
+    if is_error(r37) goto L33 (error at bubble:15) else goto L21
+L21:
+    r38 = cast(main10.Comparable, r37)
+    if is_error(r38) goto L33 (error at bubble:15) else goto L22
+L22:
+    r39 = r38
+    inc_ref j :: int
+    r40 = box(int, j)
+    r41 = PyObject_SetItem(sequence, r40, r35)
+    dec_ref r40
+    dec_ref r35
+    r42 = r41 >= 0 :: signed
+    if not r42 goto L34 (error at bubble:15) else goto L23 :: bool
+L23:
+    r43 = CPyTagged_Add(j, 2)
+    dec_ref j :: int
+    r44 = box(int, r43)
+    r45 = PyObject_SetItem(sequence, r44, r39)
+    dec_ref r44
+    dec_ref r39
+    r46 = r45 >= 0 :: signed
+    if not r46 goto L35 (error at bubble:15) else goto L24 :: bool
+L24:
+    r47 = CPyTagged_Add(r13, 2)
+    dec_ref r13 :: int
+    inc_ref r47 :: int
+    r13 = r47
+    j = r47
+    goto L7
+L25:
+    r48 = CPyTagged_Add(r2, 2)
+    dec_ref r2 :: int
+    inc_ref r48 :: int
+    r2 = r48
+    i = r48
+    goto L2
+L26:
+    inc_ref sequence
+    return sequence
+L27:
+    r49 = <error> :: object
+    return r49
+L28:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref i :: int
+    goto L26
+L29:
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    dec_ref j :: int
+    goto L25
+L30:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    dec_ref j :: int
+    goto L27
+L31:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    dec_ref j :: int
+    dec_ref r24
+    goto L27
+L32:
+    dec_ref j :: int
+    goto L24
+L33:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    dec_ref j :: int
+    dec_ref r35
+    goto L27
+L34:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    dec_ref j :: int
+    dec_ref r39
+    goto L27
+L35:
+    dec_ref N :: int
+    dec_ref r1 :: int
+    dec_ref r2 :: int
+    dec_ref r12 :: int
+    dec_ref r13 :: int
+    goto L27
+
+def __top_level__():
+    r0, r1 :: object
+    r2 :: bit
+    r3 :: str
+    r4, r5 :: object
+    r6 :: str
+    r7 :: dict
+    r8, r9 :: object
+    r10 :: str
+    r11 :: dict
+    r12, r13 :: object
+    r14 :: str
+    r15, r16 :: object
+    r17 :: bool
+    r18 :: str
+    r19 :: tuple
+    r20 :: i32
+    r21 :: bit
+    r22 :: dict
+    r23 :: str
+    r24 :: i32
+    r25 :: bit
+    r26 :: dict
+    r27 :: str
+    r28, r29, r30 :: object
+    r31 :: dict
+    r32 :: str
+    r33 :: i32
+    r34 :: bit
+    r35 :: object_ptr
+    r36 :: object_ptr[1]
+    r37 :: c_ptr
+    r38 :: native_int[1]
+    r39 :: c_ptr
+    r40 :: object
+    r41 :: dict
+    r42, r43 :: str
+    r44 :: bit
+    r45 :: object
+    r46 :: str
+    r47 :: object
+    r48 :: str
+    r49 :: object[1]
+    r50 :: object_ptr
+    r51 :: object
+    r52 :: str
+    r53 :: object
+    r54 :: str
+    r55 :: object
+    r56 :: object[1]
+    r57 :: object_ptr
+    r58 :: object
+    r59 :: None
+L0:
+    r0 = builtins :: module
+    r1 = load_address _Py_NoneStruct
+    r2 = r0 != r1
+    if r2 goto L3 else goto L1 :: bool
+L1:
+    r3 = 'builtins'
+    r4 = PyImport_Import(r3)
+    if is_error(r4) goto L20 (error at <module>:-1) else goto L2
+L2:
+    builtins = r4 :: module
+    dec_ref r4
+L3:
+    r5 = ('ABCMeta', 'abstractmethod')
+    r6 = 'abc'
+    r7 = main10.globals :: static
+    r8 = CPyImport_ImportFromMany(r6, r5, r5, r7)
+    if is_error(r8) goto L20 (error at <module>:1) else goto L4
+L4:
+    abc = r8 :: module
+    dec_ref r8
+    r9 = ('Any', 'TypeVar', 'MutableSequence')
+    r10 = 'typing'
+    r11 = main10.globals :: static
+    r12 = CPyImport_ImportFromMany(r10, r9, r9, r11)
+    if is_error(r12) goto L20 (error at <module>:2) else goto L5
+L5:
+    typing = r12 :: module
+    dec_ref r12
+    r13 = <error> :: object
+    r14 = 'main10'
+    r15 = main10.Comparable_template :: type
+    r16 = CPyType_FromTemplate(r15, r13, r14)
+    if is_error(r16) goto L20 (error at <module>:4) else goto L6
+L6:
+    r17 = Comparable_trait_vtable_setup()
+    if is_error(r17) goto L21 (error at <module>:-1) else goto L7
+L7:
+    r18 = '__mypyc_attrs__'
+    r19 = PyTuple_Pack(0)
+    if is_error(r19) goto L21 (error at <module>:4) else goto L8
+L8:
+    r20 = PyObject_SetAttr(r16, r18, r19)
+    dec_ref r19
+    r21 = r20 >= 0 :: signed
+    if not r21 goto L21 (error at <module>:4) else goto L9 :: bool
+L9:
+    main10.Comparable = r16 :: type
+    r22 = main10.globals :: static
+    r23 = 'Comparable'
+    r24 = CPyDict_SetItem(r22, r23, r16)
+    dec_ref r16
+    r25 = r24 >= 0 :: signed
+    if not r25 goto L20 (error at <module>:4) else goto L10 :: bool
+L10:
+    r26 = main10.globals :: static
+    r27 = 'MutableSequence'
+    r28 = CPyDict_GetItem(r26, r27)
+    if is_error(r28) goto L20 (error at <module>:8) else goto L11
+L11:
+    r29 = main10.Comparable :: type
+    r30 = PyObject_GetItem(r28, r29)
+    dec_ref r28
+    if is_error(r30) goto L20 (error at <module>:8) else goto L12
+L12:
+    r31 = main10.globals :: static
+    r32 = 'Sortable'
+    r33 = CPyDict_SetItem(r31, r32, r30)
+    dec_ref r30
+    r34 = r33 >= 0 :: signed
+    if not r34 goto L20 (error at <module>:8) else goto L13 :: bool
+L13:
+    r35 = load_address sys :: module
+    r36 = [r35]
+    r37 = load_address r36
+    r38 = [18]
+    r39 = load_address r38
+    r40 = (('sys', 'sys', 'sys'),)
+    r41 = main10.globals :: static
+    r42 = 'main10.py'
+    r43 = '<module>'
+    r44 = CPyImport_ImportMany(r40, r37, r41, r42, r43, r39)
+    if not r44 goto L20 else goto L14 :: bool
+L14:
+    r45 = sys :: module
+    r46 = 'stdin'
+    r47 = CPyObject_GetAttr(r45, r46)
+    if is_error(r47) goto L20 (error at <module>:19) else goto L15
+L15:
+    r48 = 'read'
+    r49 = [r47]
+    r50 = load_address r49
+    r51 = PyObject_VectorcallMethod(r48, r50, 9223372036854775809, 0)
+    if is_error(r51) goto L22 (error at <module>:19) else goto L16
+L16:
+    dec_ref r47
+    r52 = cast(str, r51)
+    if is_error(r52) goto L20 (error at <module>:19) else goto L17
+L17:
+    r53 = builtins :: module
+    r54 = 'exec'
+    r55 = CPyObject_GetAttr(r53, r54)
+    if is_error(r55) goto L23 (error at <module>:19) else goto L18
+L18:
+    r56 = [r52]
+    r57 = load_address r56
+    r58 = _PyObject_Vectorcall(r55, r57, 1, 0)
+    dec_ref r55
+    if is_error(r58) goto L23 (error at <module>:19) else goto L24
+L19:
+    dec_ref r52
+    return 1
+L20:
+    r59 = <error> :: None
+    return r59
+L21:
+    dec_ref r16
+    goto L20
+L22:
+    dec_ref r47
+    goto L20
+L23:
+    dec_ref r52
+    goto L20
+L24:
+    dec_ref r58
+    goto L19
